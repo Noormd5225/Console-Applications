@@ -1,0 +1,27 @@
+package org.example;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Main   {
+
+  public static void main(String[] args) throws Exception {
+        Scanner sc=new Scanner(System.in);
+        SchoolClass[] schoolClasses=new SchoolClass[3];
+        for(int i=0;i<3;i++){
+            System.out.println("Enter class Name like a,b,c :");
+            String name =sc.nextLine();
+            System.out.println("Enter number of Student in "+name);
+            int count=sc.nextInt();
+            schoolClasses[i]=new SchoolClass(name,count);
+            schoolClasses[i].inputStudent(sc);
+
+        }
+
+        for (int i=0;i<3;i++){
+            schoolClasses[i].displaystudent();
+            schoolClasses[i].findTopper();
+        }
+        sc.close();
+}
