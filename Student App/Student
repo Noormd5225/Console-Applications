@@ -1,0 +1,40 @@
+package org.example;
+
+public class Student {
+
+
+    int rollNumber;
+    String name;
+    int [] marks= new int[5];
+
+    Student(int rollNumber,String name,int [] marks){
+        this.rollNumber=rollNumber;
+        this.name=name;
+        for (int i=0;i<5;i++){
+            this.marks[i]=marks[i];
+        }
+    }
+   public int totalMarks(){
+        int sum=0;
+        for(int i=0;i<5;i++){
+            sum+=marks[i];
+        }
+        return sum;
+    }
+
+
+    public  float averageMarks(){
+        return (float)totalMarks()/5;
+    }
+
+
+    public void Display(){
+        System.out.print("Name: "+name+" "+"Roll Number :"+rollNumber+" "+marks);
+        for (int i=0;i<5;i++){
+            System.out.print(marks[i]+" ");
+        }
+        System.out.println("Total :"+totalMarks()+"  Average"+averageMarks());
+    }
+
+
+}
