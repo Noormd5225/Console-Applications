@@ -1,0 +1,56 @@
+package org.example;
+
+import java.util.Scanner;
+
+public class SchoolClass {
+
+    String className;
+    Student [] students;
+    int studentCount;
+
+    SchoolClass(String className,int studentCount)
+    {
+        this.className=className;
+        this.studentCount=studentCount;
+        this.students=new Student[studentCount];
+    }
+    public void inputStudent(Scanner sc){
+        for (int i=0;i<studentCount;i++){
+            System.out.println("Enter details for student "+(i+1)+" in "+className);
+            System.out.println("Roll Number ");
+            int roll=sc.nextInt();
+            sc.nextLine();
+            System.out.println("Enter name ");
+            String name=sc.nextLine();
+            int [] marks=new int[5];
+            for (int j=0;j<5;j++){
+                System.out.print("Enter marks for "+(j+1)+" subject");
+                marks[j]=sc.nextInt();
+
+            }
+            students[i]=new Student(roll,name,marks);
+
+        }
+    }
+
+    public void displaystudent(){
+        System.out.println("Student in class "+className);
+        for (int i=0;i<studentCount;i++){
+            students[i].Display();
+        }
+    }
+
+    public void findTopper(){
+        int max=-1;
+        int topper=-1;
+        for(int i=0;i<studentCount;i++){
+            int total=students[i].totalMarks();
+            if(total>max){
+                max=total;
+                topper=i;
+            }
+        }
+        System.out.println("Topper Class"+className);
+        students[topper].Display();
+    }
+}
