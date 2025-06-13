@@ -1,0 +1,45 @@
+	
+	
+	public static String Flames(String firstname,String secondname)
+	{
+		
+		int [] hashArray=new int[26];
+		
+		for(int i=0;i<firstname.length();i++) {
+			
+			hashArray[firstname.charAt(i)-'a']++;
+		}
+        
+		for(int j=0;j<secondname.length();j++) {
+		
+			
+			if(hashArray[secondname.charAt(j)-'a']>0) {
+			
+				hashArray[secondname.charAt(j)-'a']--;
+			}
+			else {
+				hashArray[secondname.charAt(j)-'a']++;
+			}
+			
+			
+		}
+		
+		int sum=0;
+		for(int x:hashArray) {
+			sum+=x;
+		}
+		
+		String [] flames= {"friend","love","affection","marry","enemy","sister"};
+		int size=flames.length;
+		while(size!=1) {
+			int value=sum%size;
+			String temp=flames[value];
+			flames[value]=flames[size-1];
+			flames[size-1]=temp;
+			size--;
+		}
+		
+		return firstname+" "+flames[size-1]+" "+secondname;
+	}
+	
+	
