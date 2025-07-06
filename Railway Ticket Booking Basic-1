@@ -1,0 +1,72 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class Passenger{
+    int seat;
+    String name;
+    Passenger(int seat,String name){
+        this.seat=seat;
+        this.name=name;
+    }
+    
+    public String toString(){
+        return "Seat "+seat+" Name "+name;
+    }
+    
+    
+  
+    
+    
+    
+    
+}
+class Main {
+    static Scanner sc=new Scanner(System.in);
+    
+      static int addTicket(Passenger [] ticket,int count){
+        
+      if(count<ticket.length)
+      {
+            System.out.println("Enter name :");
+            String name=sc.nextLine();
+            Passenger t=new Passenger(count+1,name);
+            ticket[count++]=t;
+      }
+      else{
+          System.out.println("Seat Limit is Reached...");
+     
+     
+      }
+      return count;
+    }
+    static void display(Passenger [] ticket){
+        for(Passenger p:ticket){
+            if(p!=null){
+                System.out.println(p);
+            }
+        }
+    }
+    
+    
+    public static void main(String[] args) {
+     Passenger [] ticket=new Passenger[10];
+     int count=0;
+     while(true){
+         System.out.println("Enter your choice...");
+         
+         int choice = Integer.parseInt(sc.nextLine());
+         if(choice==1){
+             count = addTicket(ticket, count);
+         }
+         else if(choice==2){
+             display(ticket);
+         }
+         else{
+             System.exit(0);
+         }
+     }
+     
+     
+    }
+}
