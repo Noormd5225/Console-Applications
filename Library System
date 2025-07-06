@@ -1,0 +1,165 @@
+import java.util.*;
+class Book{
+    static int idCounter = 1;
+    int bookid;
+    String name;
+    String author;
+    public Book(String name,String author){
+        this.bookid=idCounter++;
+        this.name=name;
+        this.author=author;
+    }
+    public int getId(){
+        return bookid;
+    }
+        public String getname(){
+        return name;
+    }
+    
+    public void setBookName(String name){
+        this.name=name;
+    }
+        public void setBookAuthor(String author){
+        this.author=author;
+    }
+    
+    public String toString(){
+        return "Book Id "+bookid+" Name "+name+" Author "+author;
+    }
+}
+
+class Library{
+    
+    Book [] book=new Book[100];
+    
+    int count=0;
+    
+    
+    void addBook(String name,String author){
+        //int bookid=1;
+        if(count<book.length){
+            
+            Book bp=new Book(name,author);
+            book[count]=bp;
+            count++;
+            }
+        else{
+            System.out.println("No Space Available");
+        }
+    
+    }
+    
+    
+    void searchbookByAuthor(int id){
+        for(Book b:book){
+            if(b!=null&&b.getId()==id){
+                System.out.println(b);
+                
+            }
+            
+        }
+        
+        System.out.println("Book not Found");
+        
+    }
+    
+    
+    
+    
+    
+        void Updatebookname(int id){
+             Scanner sc=new Scanner(System.in);
+        for(Book b:book){
+            if(b!=null&&b.getId()==id){
+                System.out.println("Enter bookname :");
+                String newbookname=sc.nextLine();
+                System.out.println("Enter bookname :");
+                String newauthorname=sc.nextLine();
+
+                b.setBookName(newbookname);
+                b.setBookAuthor(newauthorname);
+                System.out.println(b);
+                return;
+                
+            }
+            
+        }
+        
+        
+        
+    }
+    
+        void searchbookByAuthorName(String name){
+        for(Book b:book){
+            if(b!=null&&b.getname().equals(name)){
+                System.out.println(b);
+                
+            }
+            
+        }
+        
+        System.out.println("Book not Found");
+        
+    }
+    void display(){
+        for(Book b:book){
+            if(b!=null){
+                System.out.println(b);
+            }
+        }
+    }
+    
+    
+}
+
+
+
+class Main {
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+       
+        
+        Library library=new Library();
+        while(true){
+            System.out.println("Enter your choice  :");
+            int choice = Integer.parseInt(sc.nextLine());
+            if(choice==1){
+                
+                System.out.println("Enter Book name ");
+                String name=sc.nextLine();
+                System.out.println("Enter author name");
+                String author=sc.nextLine();
+                library.addBook(name,author);
+            }
+            else if(choice==2){
+                library.display();
+            }
+            else if(choice==3){
+                System.out.println("Enter id ");
+                int yourChoice=Integer.parseInt(sc.nextLine());
+                library.searchbookByAuthor(yourChoice);
+            }
+            else if(choice==4){
+                System.out.println("Enter the Boor name");
+                String searchname=sc.nextLine();
+                library.searchbookByAuthorName(searchname);
+            }
+            else if(choice==5){
+                System.out.println("Enter id ");
+                int yourChoiceid=Integer.parseInt(sc.nextLine());
+                library.Updatebookname(yourChoiceid);
+            }
+            else{
+                
+                
+                System.out.println("Thanks for Everythings....");
+                System.exit(0);
+            }
+        }
+        
+
+        
+        
+    }
+}
