@@ -1,0 +1,171 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// Employee class
+class Employee {
+    int id;
+    String name;
+    int total;
+
+    public Employee(int id, String name, int total) {
+        this.id = id;
+        this.name = name;
+        this.total = total;
+    }
+
+    public void display() {
+        System.out.println("ID: " + id + ", Name: " + name + ", Total Salary: " + total);
+    }
+}
+
+// Employee Management class
+class EmployeeManagement {
+    private ArrayList<Employee> employees = new ArrayList<>();
+
+    public void addEmployee(int id, String name, int total) {
+        Employee emp = new Employee(id, name, total);
+        employees.add(emp);
+    }
+
+    public void displayEmployee() {
+        if (employees.isEmpty()) {
+            System.out.println("No Employee Found");
+            return;
+        }
+        for (Employee emp : employees) {
+            emp.display();
+        }
+    }
+
+    public void searchByEmployeeID(int id) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                emp.display();
+                return;
+            }
+        }
+        System.out.println("Employee is not found");
+    }
+
+    public void updateEmployeeDetails(int id, String name, int total) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                emp.name = name;
+                emp.total = total;
+                System.out.println("Employee details are updated successfully");
+                return;
+            }
+        }
+        System.out.println("Employee is not found");
+    }
+
+    public void deleteEmployee(int id) {
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                employees.remove(emp);
+                System.out.println("Employee is deleted successfully");
+                return;
+            }
+        }
+        System.out.println("Employee is not found");
+    }
+
+    public void maxSalary() {
+        if (employees.isEmpty()) {
+            System.out.println("No Employees found");
+            return;
+        }
+        Employee max = employees.get(0);
+        for (Employee emp : employees) {
+            if (emp.total > max.total) {
+                max = emp;
+            }
+        }
+        System.out.println("************ The Employee Details Who has High Salary ************");
+        max.display();
+    }
+
+    public void minSalary() {
+        if (employees.isEmpty()) {
+            System.out.println("No Employees found");
+            return;
+        }
+        Employee min = employees.get(0);
+        for (Employee emp : employees) {
+            if (emp.total < min.total) {
+                min = emp;
+            }
+        }
+        System.out.println("************ The Employee Details Who has Low Salary ************");
+        min.display();
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        EmployeeManagement empMgmt = new EmployeeManagement();
+
+        while (true) {
+            System.out.println("1. Add Employees");
+            System.out.println("2. Display Employee Details");
+            System.out.println("3. Search Employee by ID");
+            System.out.println("4. Update Employee Details");
+            System.out.println("5. Delete Employee");
+            System.out.println("6. High Salary");
+            System.out.println("7. Low Salary");
+            System.out.println("8. Exit");
+            System.out.print("Choose your option: ");
+
+            int option = sc.nextInt();
+            sc.nextLine(); // Consume newline
+
+            switch (option) {
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id = sc.nextInt();
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Enter Total Salary: ");
+                    int total = sc.nextInt();
+                    empMgmt.addEmployee(id, name, total);
+                    break;
+                case 2:
+                    empMgmt.displayEmployee();
+                    break;
+                case 3:
+                    System.out.print("Enter Employee ID: ");
+                    empMgmt.searchByEmployeeID(sc.nextInt());
+                    break;
+                case 4:
+                    System.out.print("Enter Employee ID to update: ");
+                    int updateId = sc.nextInt();
+                    sc.nextLine(); // Consume newline
+                    System.out.print("Enter New Name: ");
+                    String newName = sc.nextLine();
+                    System.out.print("Enter New Total Salary: ");
+                    int newTotal = sc.nextInt();
+                    empMgmt.updateEmployeeDetails(updateId, newName, newTotal);
+                    break;
+                case 5:
+                    System.out.print("Enter Employee ID to Delete: ");
+                    empMgmt.deleteEmployee(sc.nextInt());
+                    break;
+                case 6:
+                    empMgmt.maxSalary();
+                    break;
+                case 7:
+                    empMgmt.minSalary();
+                    break;
+                case 8:
+                    System.out.println("Thanks For Using Us....");
+                    sc.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid Option");
+            }
+        }
+    }
+}
