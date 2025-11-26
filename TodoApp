@@ -1,0 +1,100 @@
+class Task:
+    
+    def __init__(self,taskId,title,description,priority,status):
+        self.taskId=taskId
+        self.title=title
+        self.description=description
+        self.priority=priority
+        self.status=status
+
+    def display(self):
+        print( self.taskId, " ",self.title," ",self.description," ",self.priority," ",self.status)
+
+class TaskManagement:
+
+    def __init__(self):
+        self.task=[]
+    
+
+    def addTask(self,id,title,description,priority,status):
+        t=Task(id,title,description,priority,status)
+        self.task.append(t)
+
+    def displayTask(self):
+        if not self.task:
+            print("No Task Found..")
+            return
+        for temp in self.task:
+            temp.display()
+
+    def displayPendingTask(self):
+        if not self.task:
+            print("No Task Found..")
+            return
+        for temp in self.task:
+            if temp.status=='pending':
+                 temp.display()
+
+    def displayhighPriorityandPendingTask(self):
+        if not self.task:
+            print("No Task Found..")
+            return
+        for temp in self.task:
+            if temp.priority=='high' and temp.status=='pending':
+                 temp.display()
+
+
+    def SearchByTask(self,id):
+        if not self.task:
+            print("No Task Found..")
+            return
+        for temp in self.task:
+            if temp.id==id:
+                 temp.display()
+
+    def SearchByTaskName(self,title):
+        if not self.task:
+            print("No Task Found..")
+            return
+        for temp in self.task:
+            if temp.title==title:
+                 temp.display()
+
+
+class Main:
+    temp=TaskManagement()
+    while(True):
+        print("1.Add Task ")
+        print("2.List out Task")
+        print("3.List out Pending Task Only")
+        print("4.High Priority and Pending Task Details ")
+        print("5.Print Task Based On Id")
+        print("6.Print Task Based On Id")
+        option=int(input("Enter the Option You Want : "))
+
+        if(option==1):
+            id=int(input("Enter Task ID : "))
+            title=input("Enter Task Title : ")
+            description=input("Enter Task Description : ")
+            priority=input("Enter priority of that task : ")
+            status=input("Enter Status of that Task : ")
+            temp.addTask(id,title,description,priority,status)
+        elif(option==2):
+            print("Id  Title         Description       Priority        Status")
+            temp.displayTask()
+        elif(option==3):
+            print("**********List out Pending Task***********")
+            temp.displayPendingTask()
+        elif(option==4):
+            temp.displayhighPriorityandPendingTask()
+        elif(option==5):
+            temp.SearchByTask(id=int(input("Enter Dd For Display Task : ")))
+        elif(option==6):
+            temp.SearchByTaskName(name=input("Enter Task Title : "))
+        elif(option==2):
+            print("")
+        elif(option==2):
+            print("Thanks For Usings Our System")
+            break
+        else:
+            print("invalid option please select correct one......")
