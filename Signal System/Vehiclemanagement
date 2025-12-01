@@ -1,0 +1,105 @@
+package org.example;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
+
+public class VehicleManagement {
+    Queue<Vehicle> lane1=new ArrayDeque<>();
+    Queue<Vehicle> lane2=new ArrayDeque<>();
+    Queue<Vehicle> lane3=new ArrayDeque<>();
+
+    public void addVehicleonRoad(int lane,String numberplate){
+        if(lane==1){
+            lane1.add(new Vehicle(numberplate));
+        }
+        else if(lane==2){
+            lane2.add(new Vehicle(numberplate));
+        }else if(lane==3){
+            lane3.add(new Vehicle(numberplate));
+        }else{
+            System.out.println("Please enter valid lane number");
+        }
+    }
+
+    public void displayAllVehicle(){
+        System.out.println("*************Lane One*************");
+        for(Vehicle vehicle1 :lane1){
+            System.out.println(vehicle1);
+        }
+        System.out.println("*************Lane OnTwo*************");
+        for(Vehicle vehicle2 :lane2){
+            System.out.println(vehicle2);
+        }
+        System.out.println("*************Lane Three*************");
+        for(Vehicle vehicle3 :lane3){
+            System.out.println(vehicle3);
+        }
+    }
+
+
+    public void searchByNumberPlate(String numberplate){
+
+        for(Vehicle vehicle1 :lane1){
+            if(vehicle1.number.equals(numberplate)){
+                System.out.println(vehicle1);
+                return;
+            }
+
+        }
+
+        for(Vehicle vehicle2 :lane2){
+            if(vehicle2.number.equals(numberplate)){
+                System.out.println(vehicle2);
+                return;
+            }
+        }
+
+        for(Vehicle vehicle3 :lane3){
+            if(vehicle3.number.equals(numberplate)){
+                System.out.println(vehicle3);
+                return;
+            }
+        }
+    }
+
+    public void remoVehicleOnLane(int lane,int numberOfvehicle){
+
+        if(lane==1){
+            if(lane1.size()<numberOfvehicle){
+                System.out.println("Not much number of vehicle standing..");
+                return;
+            }
+            for(int i=0;i<numberOfvehicle;i++){
+                lane1.poll();
+                }
+
+            }
+
+        else if(lane==2){
+            if(lane2.size()<numberOfvehicle){
+                System.out.println("Not much number of vehicle standing..");
+                return;
+            }
+            for(int i=0;i<numberOfvehicle;i++){
+                lane2.poll();
+            }
+    }
+
+        else if(lane==3){
+            if(lane3.size()<numberOfvehicle){
+                System.out.println("Not much number of vehicle standing..");
+                return;
+            }
+            for(int i=0;i<numberOfvehicle;i++){
+                lane3.poll();
+            }
+        }else{
+            System.out.println("Please Enter Valid Lane Number...");
+        }
+
+
+
+    }
+
+
+}
