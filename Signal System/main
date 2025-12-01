@@ -1,0 +1,100 @@
+package org.example;
+
+import java.util.Scanner;
+
+public class Main {
+
+
+
+
+
+
+    public static String mergeString(String word1,String word2){
+        StringBuilder str=new StringBuilder();
+
+        int i=0;
+        if(word1.length()<=word2.length()){
+            while(i<word1.length()){
+                str.append(word1.charAt(i));
+                str.append(word2.charAt((i)));
+                i++;
+            }
+        }
+        else {
+
+            while(i<word2.length()){
+                str.append(word1.charAt(i));
+                str.append(word2.charAt((i)));
+                i++;
+            }
+        }
+        while(i<word2.length()){
+            str.append(word2.charAt(i));
+            i++;
+        }
+        while(i<word1.length()){
+            str.append(word1.charAt(i));
+            i++;
+        }
+
+        return new String(str);
+    }
+/*Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Word 1 : ");
+        String word1=sc.nextLine();
+        System.out.println("Enter Word 2 : ");
+        String word2=sc.nextLine();
+        System.out.println(mergeString(word1,word2));*/
+
+
+
+    public static void main(String[] args) {
+        VehicleManagement vehicleManagement=new VehicleManagement();
+        Scanner sc=new Scanner(System.in);
+
+
+        while(true){
+            System.out.println("1.Add Vehicle on lane");
+            System.out.println("2.List out All Vehicle on lane");
+            System.out.println("3.Search Vehicle");
+            System.out.println("4.Remove Vehicle Via Signale");
+
+            System.out.println("5.Exit");
+
+            System.out.print("Please Enter your Option :");
+            int option=sc.nextInt();
+            if(option==1){
+                System.out.print("Please Enter your Option :");
+                int laneNumber=sc.nextInt();
+                System.out.println("Enter vehicle Number : ");
+                String numberPlate=sc.next();
+                vehicleManagement.addVehicleonRoad(laneNumber,numberPlate);
+            }else if(option==2){
+                vehicleManagement.displayAllVehicle();
+            }
+            else if(option==3){
+                System.out.println("Enter vehicle Number : ");
+                String numberPlate=sc.next();
+                vehicleManagement.searchByNumberPlate(numberPlate);
+            }
+            else if(option==4){
+                System.out.print("Please Enter Lane of Signal :");
+                int lane=sc.nextInt();
+                System.out.print("Please Enter Number of vehicle you want to Remove from Signal :");
+                int numberOfvehicle=sc.nextInt();
+                vehicleManagement.remoVehicleOnLane( lane, numberOfvehicle);
+            }
+            else if(option==5){
+                break;
+            }
+
+            else{
+                System.out.println("Enter valid Option");
+            }
+
+        }
+
+
+
+    }
+}
