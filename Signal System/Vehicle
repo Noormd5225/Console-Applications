@@ -1,0 +1,17 @@
+package org.example;
+
+public class Vehicle {
+    static int order;
+    int id;
+    String number;
+
+    Vehicle(String number){
+        this.id=++order;
+        this.number=number;
+
+    }
+    public String toString(){
+        return "Line number : "+id+" Number Plate : "+number;
+    }
+
+}
